@@ -1,1 +1,1 @@
-I first submitted the project to Azure Repos and then imported it to GitHub. I also included a zipped folder of the project. I didn’t have time to remove the Azure setup from Visual Studio, so if you run into any problems running the app, it might be because of that.
+
