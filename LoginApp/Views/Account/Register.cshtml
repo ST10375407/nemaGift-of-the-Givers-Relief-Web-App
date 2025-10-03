@@ -1,0 +1,87 @@
+﻿@model LoginApp.Models.User
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center text-pink display-5">Create Account</h2>
+        <hr />
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+
+        <form asp-action="Register" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control border-pink" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control border-pink" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control border-pink" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control border-pink" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" type="password" class="form-control border-pink" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-pink w-100">Register</button>
+            <p class="text-center mt-2">
+                <a asp-action="Login" class="btn btn-link text-purple">Already have an account? Login</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<style>
+    .text-pink {
+        color: #ff3399;
+        font-weight: bold;
+    }
+
+    .text-purple {
+        color: #800080;
+        font-weight: bold;
+    }
+
+    .btn-pink {
+        background-color: #ff3399;
+        color: white;
+        border: none;
+    }
+
+        .btn-pink:hover {
+            background-color: #e6007e;
+            color: white;
+        }
+
+    .border-pink {
+        border: 2px solid #ff3399 !important;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

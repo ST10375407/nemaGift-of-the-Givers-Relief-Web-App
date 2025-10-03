@@ -1,0 +1,41 @@
+﻿@model LoginApp.Models.ResourceDonation
+
+@{
+    ViewData["Title"] = "Donate Resources";
+}
+
+<div class="text-center mb-4" style="background-color:#ffe0f0; padding:20px; border-radius:10px;">
+    <h2 class="display-5" style="color:#d63384;">@ViewData["Title"]</h2>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<form asp-action="Create" method="post" style="background-color:#ffe0f0; padding:20px; border-radius:10px;">
+    @Html.AntiForgeryToken()
+    <div class="form-group mb-3">
+        <label asp-for="ResourceType" style="color:#d63384;"></label>
+        <input asp-for="ResourceType" class="form-control" style="border-color:#d63384;" />
+        <span asp-validation-for="ResourceType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Quantity" style="color:#d63384;"></label>
+        <input asp-for="Quantity" type="number" class="form-control" style="border-color:#d63384;" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Location" style="color:#d63384;"></label>
+        <input asp-for="Location" class="form-control" style="border-color:#d63384;" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn" style="background-color:#d63384; color:white;">Donate</button>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

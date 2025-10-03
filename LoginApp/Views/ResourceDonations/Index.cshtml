@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LoginApp.Models.ResourceDonation>
+
+@{
+    ViewData["Title"] = "My Resource Donations";
+}
+
+<div class="text-center mb-4" style="background-color:#ffe0f0; padding:20px; border-radius:10px;">
+    <h2 class="display-5" style="color:#d63384;">@ViewData["Title"]</h2>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<p>
+    <a class="btn" asp-action="Create" style="background-color:#d63384; color:white;">Donate Resources</a>
+</p>
+
+<table class="table table-bordered" style="background-color:#fff0f5; border-color:#d63384;">
+    <thead style="background-color:#ffcce5; color:#d63384;">
+        <tr>
+            <th>Resource Type</th>
+            <th>Quantity</th>
+            <th>Location</th>
+            <th>Date Donated</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donation in Model)
+        {
+            <tr>
+                <td>@donation.ResourceType</td>
+                <td>@donation.Quantity</td>
+                <td>@donation.Location</td>
+                <td>@donation.DateDonated.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

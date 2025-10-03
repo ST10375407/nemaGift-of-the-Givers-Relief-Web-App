@@ -1,0 +1,40 @@
+﻿@model LoginApp.Models.VolunteerTask
+
+@{
+    ViewData["Title"] = "Add Volunteer Task";
+}
+
+<div class="text-center mb-4" style="background-color:#ffe0f0; padding:20px; border-radius:10px;">
+    <h2 class="display-5" style="color:#d63384;">@ViewData["Title"]</h2>
+    <p class="lead" style="color:#a8326f;">
+        Volunteers can register, browse available tasks, and track their contributions to relief efforts.
+        Provide features for assigning tasks, managing schedules, and communicating with volunteers.
+    </p>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<form asp-action="Create" method="post" style="background-color:#ffe0f0; padding:20px; border-radius:10px;">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        <label asp-for="TaskTitle" style="font-weight:bold;"></label>
+        <input asp-for="TaskTitle" class="form-control" style="border-color:#d63384;" />
+        <span asp-validation-for="TaskTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Description" style="font-weight:bold;"></label>
+        <textarea asp-for="Description" class="form-control" style="border-color:#d63384;"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn" style="background-color:#d63384; color:white;">Add Task</button>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LoginApp.Models.VolunteerTask>
+
+@{
+    ViewData["Title"] = "My Volunteer Tasks";
+}
+
+<h2 style="color:#d63384;">@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert" style="background-color:#ffc0cb; color:#880e4f; border:none;">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert" style="background-color:#f8d7da; color:#721c24; border:none;">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<p>
+    <a class="btn" style="background-color:#d63384; color:white;" asp-action="Create">Add New Task</a>
+</p>
+
+<table class="table table-bordered" style="border-color:#d63384;">
+    <thead style="background-color:#f8bbd0; color:#880e4f;">
+        <tr>
+            <th>Task Title</th>
+            <th>Description</th>
+            <th>Date Assigned</th>
+            <th>Date Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.TaskTitle</td>
+                <td>@task.Description</td>
+                <td>@task.DateAssigned.ToString("g")</td>
+                <td>@(task.DateCompleted.HasValue? task.DateCompleted.Value.ToString("g") : "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>

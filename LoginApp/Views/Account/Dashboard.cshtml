@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    var userName = Context.Session.GetString("UserName") ?? "User";
+}
+
+<h2 class="text-center text-pink display-5">Welcome, @userName!</h2>
+<hr />
+
+<div class="row">
+    <!-- Disaster Incident Reporting -->
+    <div class="col-md-6">
+        <div class="card mb-3" style="background-color:#ffe6f0;">
+            <div class="card-body">
+                <h4 class="card-title text-purple">Disaster Incident Reporting</h4>
+                <p class="card-text">Submit reports for natural disasters or emergencies in your area.</p>
+                <a asp-controller="IncidentReports" asp-action="Create" class="btn btn-pink">Report New Incident</a>
+                <a asp-controller="IncidentReports" asp-action="Index" class="btn btn-secondary ms-2">View My Incidents</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resource Donation -->
+    <div class="col-md-6">
+        <div class="card mb-3" style="background-color:#ffe6f0;">
+            <div class="card-body">
+                <h4 class="card-title text-purple">Resource Donation</h4>
+                <p class="card-text">Donate resources such as food, clothing, or medical supplies.</p>
+                <a asp-controller="ResourceDonations" asp-action="Create" class="btn btn-pink">Donate Resources</a>
+                <a asp-controller="ResourceDonations" asp-action="Index" class="btn btn-secondary ms-2">View My Donations</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Management -->
+    <div class="col-md-6">
+        <div class="card mb-3" style="background-color:#ffe6f0;">
+            <div class="card-body">
+                <h4 class="card-title text-purple">Volunteer Management</h4>
+                <p class="card-text">Register as a volunteer, browse tasks, and track contributions.</p>
+                <a asp-controller="VolunteerTasks" asp-action="Create" class="btn btn-pink">New Task</a>
+                <a asp-controller="VolunteerTasks" asp-action="Index" class="btn btn-secondary ms-2">My Tasks</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-pink {
+        color: #ff3399;
+    }
+
+    .text-purple {
+        color: #800080;
+        font-weight: bold;
+    }
+
+    .btn-pink {
+        background-color: #ff3399;
+        color: white;
+        border: none;
+    }
+
+        .btn-pink:hover {
+            background-color: #e6007e;
+            color: white;
+        }
+</style>

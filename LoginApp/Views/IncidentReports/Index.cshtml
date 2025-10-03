@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LoginApp.Models.IncidentReport>
+
+@{
+    ViewData["Title"] = "My Incident Reports";
+}
+
+<h2 class="text-center text-pink display-5">@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<p>
+    <a class="btn btn-pink" asp-action="Create">Report New Incident</a>
+</p>
+
+<table class="table table-bordered table-striped mt-3" style="background-color:#ffe6f0;">
+    <thead class="text-purple">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Date Reported</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.Title</td>
+                <td>@report.Description</td>
+                <td>@report.Location</td>
+                <td>@report.DateReported.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .text-pink {
+        color: #ff3399;
+    }
+
+    .text-purple {
+        color: #800080;
+        font-weight: bold;
+    }
+
+    .btn-pink {
+        background-color: #ff3399;
+        color: white;
+        border: none;
+    }
+
+        .btn-pink:hover {
+            background-color: #e6007e;
+            color: white;
+        }
+</style>

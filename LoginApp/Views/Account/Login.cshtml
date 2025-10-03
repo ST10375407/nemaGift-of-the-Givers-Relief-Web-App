@@ -1,0 +1,45 @@
+﻿@model LoginApp.Models.UserLogin
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3" style="background-color:#ffe6f0; padding:30px; border-radius:10px; box-shadow:0 0 15px rgba(214,51,132,0.5);">
+        <h2 style="color:#d63384; text-align:center;">Login</h2>
+        <hr style="border-top:2px solid #d63384;" />
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert" style="background-color:#ffc0cb; color:#880e4f; border:none;">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <form asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" style="color:#880e4f;"></label>
+                <input asp-for="Email" class="form-control" style="border-color:#d63384;" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Password" style="color:#880e4f;"></label>
+                <input asp-for="Password" type="password" class="form-control" style="border-color:#d63384;" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn" style="background-color:#d63384; color:white; width:100%;">Login</button>
+        </form>
+
+        <div class="text-center mt-3" style="color:#880e4f;">
+            <p>Don't have an account? <a asp-controller="Account" asp-action="Register" style="color:#d63384; font-weight:bold;">Register here</a></p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
